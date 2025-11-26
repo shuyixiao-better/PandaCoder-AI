@@ -1,0 +1,98 @@
+<idea-plugin>
+    <id>com.poeticcoder.pandacoder-ai</id>
+    <name>PandaCoder AI</name>
+    <vendor email="support@poeticcoder.com" url="https://www.poeticcoder.com">Poetic Coder</vendor>
+    
+    <description><![CDATA[
+    <h2>🇨🇳 中文版产品描述</h2>
+    <h3>PandaCoder AI —— 你的本地化智能编程伙伴</h3>
+    <p><strong>在数据安全与开发效率之间，不必妥协。</strong></p>
+    
+    <p>PandaCoder AI 是一款专为 JetBrains IDE（如 IntelliJ IDEA）打造的智能编码插件，支持无缝对接本地或内网部署的大模型（如 CodeLlama、Qwen-Coder、DeepSeek 等），让你在完全离线或隔离网络环境中，依然享受 AI 驱动的代码生成、补全与解释能力。</p>
+    
+    <p>无论你是金融、政务或企业的开发者，还是注重代码隐私的独立工程师，PandaCoder AI 都让你掌控数据主权——所有代码请求均在本地处理，绝不外传。</p>
+    
+    <p>轻量、灵活、可配置，它不只是另一个 Copilot，而是为你量身定制的安全、自主、高效的 AI 编程入口。</p>
+    
+    <p><strong>让智能回归本地，让编码专注创造。</strong></p>
+    
+    <h3>核心特性</h3>
+    <ul>
+        <li>🔒 <strong>数据安全</strong>：所有代码请求在本地处理，绝不外传</li>
+        <li>🚀 <strong>本地部署</strong>：支持 Ollama、CodeLlama、Qwen-Coder、DeepSeek 等本地模型</li>
+        <li>💬 <strong>Chat 模式</strong>：智能问答，代码解释，技术咨询</li>
+        <li>🤖 <strong>Agent 模式</strong>：代码生成，自动应用到编辑器</li>
+        <li>📎 <strong>上下文感知</strong>：支持 @类名、@文件路径绑定项目上下文</li>
+        <li>🎯 <strong>精准定位</strong>：自动识别代码元素，快速跳转</li>
+        <li>🔄 <strong>多会话管理</strong>：支持多个独立对话会话</li>
+        <li>⚡ <strong>快速响应</strong>：本地模型，无网络延迟</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>🇬🇧 English Version</h2>
+    <h3>PandaCoder AI — Your On-Prem AI Coding Companion</h3>
+    <p><strong>Code smarter, without compromising security.</strong></p>
+    
+    <p>PandaCoder AI is a JetBrains IDE (IntelliJ IDEA, etc.) plugin designed for developers who demand both AI-powered coding and full data control. It seamlessly integrates with your local or on-premises LLMs—such as CodeLlama, Qwen-Coder, or DeepSeek—enabling intelligent code generation, completion, and explanation entirely within your private network.</p>
+    
+    <p><strong>No cloud dependency. No data leakage. Just pure, responsive AI assistance where your code lives.</strong></p>
+    
+    <p>Whether you're in finance, government, enterprise, or simply privacy-conscious, PandaCoder AI puts you in control: all requests stay on your machine, and your code never leaves your environment.</p>
+    
+    <p><strong>AI that respects your boundaries. Code that flows with confidence.</strong></p>
+    
+    <h3>Key Features</h3>
+    <ul>
+        <li>🔒 <strong>Data Security</strong>: All code requests processed locally, never transmitted</li>
+        <li>🚀 <strong>Local Deployment</strong>: Support Ollama, CodeLlama, Qwen-Coder, DeepSeek and more</li>
+        <li>💬 <strong>Chat Mode</strong>: Intelligent Q&A, code explanation, technical consulting</li>
+        <li>🤖 <strong>Agent Mode</strong>: Code generation, auto-apply to editor</li>
+        <li>📎 <strong>Context Aware</strong>: Support @ClassName, @FilePath to bind project context</li>
+        <li>🎯 <strong>Precise Location</strong>: Auto-recognize code elements, quick navigation</li>
+        <li>🔄 <strong>Multi-Session</strong>: Support multiple independent conversation sessions</li>
+        <li>⚡ <strong>Fast Response</strong>: Local models, no network latency</li>
+    </ul>
+    
+    <h3>Recommended Models</h3>
+    <ul>
+        <li><strong>CodeLlama</strong>: Optimized for code generation</li>
+        <li><strong>Qwen-Coder</strong>: Alibaba's Qwen code model</li>
+        <li><strong>DeepSeek-Coder</strong>: DeepSeek's code model</li>
+    </ul>
+    
+    <h3>Getting Started</h3>
+    <ol>
+        <li>Install Ollama or your preferred local LLM service</li>
+        <li>Configure service URL and model name in Settings > PandaCoder AI</li>
+        <li>Open AI Chat tool window and start coding with AI</li>
+    </ol>
+    
+    <p>Visit <a href="https://www.poeticcoder.com">www.poeticcoder.com</a> for more information.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 设置服务 -->
+        <applicationService serviceImplementation="com.poeticcoder.ai.settings.PandaCoderAISettings"/>
+        
+        <!-- 设置页面 -->
+        <applicationConfigurable 
+            groupId="tools" 
+            displayName="PandaCoder AI" 
+            id="com.poeticcoder.ai.settings.PandaCoderAIConfigurable"
+            instance="com.poeticcoder.ai.settings.PandaCoderAIConfigurable"/>
+        
+        <!-- AI Chat 工具窗口 -->
+        <toolWindow 
+            id="PandaCoder AI"
+            factoryClass="com.poeticcoder.ai.ui.AiChatToolWindowFactory"
+            anchor="right"
+            icon="/icons/ai-chat.svg"/>
+        
+        <!-- 通知组 -->
+        <notificationGroup id="PandaCoder.AI.Notifications" displayType="BALLOON"/>
+    </extensions>
+</idea-plugin>
